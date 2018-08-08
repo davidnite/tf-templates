@@ -1,14 +1,15 @@
 module "terraform_state_resourceGroup" {
-  source = "bitbucket.org/davidnite/tf-templates//modules//resource_group"
+  source = "github.com/davidnite/tf-templates//modules//resource_group"
   name = "tfState"
   location = "southcentralus"
 }
 
 module "terraform_state_storageAccount" {
-  source = "bitbucket.org/davidnite/tf-templates//modules//storage_account"
+  source = "github.com/davidnite/tf-templates//modules//storage_account"
   location = "southcentralus"
   account_name = "tfstatesa963852"
-  account_type = "Standard_LRS"
+  account_tier = "Standard"
+  account_replication_type = "LRS"
   resource_group_name = "${module.terraform_state_resourceGroup.name}"
 }
 
